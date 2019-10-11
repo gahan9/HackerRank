@@ -1,28 +1,27 @@
-class Person:
-    def __init__(self, initial_Age):
-        if initial_Age < 0:
-            self.age = 0
-            print("This person is not valid, setting age to 0.")
-        else:
-            self.age = initial_Age
+class Person(object):
+    def __init__(self, initial_age):
+        if initial_age < 0:
+            print("This age for person is not valid, setting age to 0.")
+        self.age = max(0, initial_age)
 
-    def amIOld(self):
-        if self.age<13:
-            print("You are young.")
-        elif self.age>=13 and self.age<18:
-            print("You are a teenager.")
+    def how_old_i_am(self):
+        result = "You are {}."
+        if self.age in range(0, 13):
+            my_status = "young"
+        elif self.age in range(13, 18):
+            my_status = "teenager"
         else:
-            print("You are old.")
+            my_status = "old"
+        print(result.format(my_status))
 
-    def yearPasses(self):
+    def year_passes(self):
         self.age += 1
 
-t = int(input())
-for i in range(0, t):
-    age = int(input())         
-    p = Person(age)  
-    p.amIOld()
+
+for _ in range(int(input())):
+    p = Person(int(input()))
+    p.how_old_i_am()
     for j in range(0, 3):
-        p.yearPasses()       
-    p.amIOld()
+        p.year_passes()
+    p.how_old_i_am()
     print("")
